@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Metros Dev</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  :root {
+    --gold: #d4af37;
+    --gold-dark: #b8942e;
+    --wine: #722f37;
+    --wine-dark: #4a1e24;
+    --black: #0a0a0a;
+    --cream: #f5f1e8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  .navbar {
+    background: rgba(10, 10, 10, 0.92) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 18px 0;
+  }
+  .navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: var(--gold) !important;
+  }
+  .navbar-brand span { color: var(--cream); }
+  .nav-link {
+    color: var(--cream) !important;
+    font-weight: 500;
+    margin: 0 8px;
+    transition: color 0.3s;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--gold) !important; }
+
+  /* PAGE HEADER */
+  .page-header {
+    position: relative;
+    overflow: hidden;
+    padding: 140px 20px 80px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  .page-header-bg {
+    position: absolute;
+    inset: -10%;
+    background-image: url('https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    animation: pagePanZoom 16s ease-in-out infinite alternate;
+    z-index: 0;
+    filter: brightness(0.4) contrast(1.1);
+  }
+
+  @keyframes pagePanZoom {
+    0% { transform: scale(1.05) translate(0, 0); }
+    100% { transform: scale(1.15) translate(-2%, -1%); }
+  }
+
+  .page-header-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(74,30,36,0.85) 100%);
+    z-index: 1;
+  }
+
+  .page-header-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: var(--cream);
+    margin-bottom: 18px;
+    line-height: 1.1;
+  }
+
+  .page-header h1 span { color: var(--gold); }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: rgba(245, 241, 232, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* WORK GRID */
+  .work-section {
+    padding: 100px 0;
+  }
+
+  .project-card {
+    background: linear-gradient(145deg, rgba(114,47,55,0.15), rgba(10,10,10,0.6));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(114, 47, 55, 0.5);
+  }
+
+  .project-img-wrap {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+  }
+
+  .project-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 6s ease-in-out;
+  }
+
+  .project-card:hover .project-img-wrap img {
+    transform: scale(1.15);
+  }
+
+  .project-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  .project-body {
+    padding: 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-body h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .project-body p {
+    color: rgba(245, 241, 232, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .project-tags span {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .btn-view {
+    display: inline-block;
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-view:hover {
+    background: var(--gold);
+    color: var(--black);
+    transform: translateY(-3px);
+  }
+
+  /* CTA */
+  .cta-wrapper {
+    background: var(--black);
+    padding: 80px 20px;
+  }
+
+  .cta-section {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 2px solid var(--gold);
+    padding: 100px 40px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 30px 80px rgba(114, 47, 55, 0.5);
+    background: linear-gradient(135deg, var(--wine-dark), var(--wine));
+  }
+
+  .cta-section h2 {
+    color: var(--cream);
+    font-weight: 800;
+    font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+    margin-bottom: 18px;
+  }
+
+  .cta-section h2 span { color: var(--gold); }
+
+  .cta-section p {
+    color: rgba(245, 241, 232, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s;
+  }
+
+  .btn-gold:hover {
+    background: var(--gold-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.35);
+    color: var(--black);
+  }
+
+  footer {
+    background: var(--black);
+    padding: 50px 0 30px;
+    text-align: center;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  footer h5 {
+    color: var(--gold);
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  footer p {
+    color: rgba(245, 241, 232, 0.5);
+    font-size: 0.9rem;
+    margin: 4px 0;
+  }
+
+  @media (max-width: 768px) {
+    .page-header { padding: 120px 20px 60px; }
+    .work-section { padding: 60px 0; }
+    .cta-wrapper { padding: 50px 15px; }
+    .cta-section { padding: 70px 25px; }
+    .project-img-wrap { height: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Metros <span>Dev</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="services.html">Services</a>
+        <a class="nav-link active" href="work.html">Work</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <div class="eyebrow">My Portfolio</div>
+    <h1>Recent <span>Projects</span></h1>
+    <p>Real websites I've built and deployed for clients and personal work.</p>
+  </div>
+</section>
+
+<!-- WORK GRID -->
+<section class="work-section">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- PROJECT 1 -->
+      <div class="col-12 col-md-6">
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <span class="project-badge">Restaurant</span>
+            <img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=800&q=80" alt="Emmavic Kitchen">
+          </div>
+          <div class="project-body">
+            <h3>Emmavic Kitchen</h3>
+            <p>A 6-page restaurant website with bilingual menus (Nigerian + Canadian), WhatsApp ordering, and a modern responsive layout for a Calgary-based business.</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive</span>
+            </div>
+            <a href="https://emmavickitchen.netlify.app" target="_blank" class="btn-view">View Live Site →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="col-12 col-md-6">
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <span class="project-badge">Real Estate</span>
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="HÜGE REALE">
+          </div>
+          <div class="project-body">
+            <h3>HÜGE REALE</h3>
+            <p>A corporate real estate website with 5 pages, 12 services, company profile gallery, and WhatsApp enquiry integration for a Nigerian real estate firm.</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Multi-page</span>
+            </div>
+            <a href="https://huge-reale-francis.bentovot58.workers.dev" target="_blank" class="btn-view">View Live Site →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="col-12 col-md-6">
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <span class="project-badge">Bootstrap 5</span>
+            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80" alt="Metros Dev Landing">
+          </div>
+          <div class="project-body">
+            <h3>Metros Dev Landing Page</h3>
+            <p>A modern landing page built with Bootstrap 5 sticky navbar, gradient hero, service cards, FAQ accordion, and full responsiveness.</p>
+            <div class="project-tags">
+              <span>Bootstrap 5</span><span>HTML</span><span>CSS</span><span>Responsive</span>
+            </div>
+            <a href="https://metros-dev2.bentovot58.workers.dev" target="_blank" class="btn-view">View Live Site →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4 -->
+      <div class="col-12 col-md-6">
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <span class="project-badge">Personal</span>
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80" alt="Personal Portfolio">
+          </div>
+          <div class="project-body">
+            <h3>Personal Portfolio Site</h3>
+            <p>My own portfolio website with a course registration form, WhatsApp integration, and an interactive JavaScript quiz app.</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Quiz App</span>
+            </div>
+            <a href="https://onoja-francis.bentovot58.workers.dev" target="_blank" class="btn-view">View Live Site →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrapper">
+  <section class="cta-section">
+    <h2>Want Something <span>Like This?</span></h2>
+    <p>Let's build a website that works as hard as you do.</p>
+    <a href="contact.html" class="btn btn-gold">Start Your Project →</a>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <h5>Metros Dev</h5>
+    <p>Building websites that work for you.</p>
+    <p class="mt-3">© 2026 Metros Dev. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
