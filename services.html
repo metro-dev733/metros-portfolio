@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Metros Dev</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  :root {
+    --gold: #d4af37;
+    --gold-dark: #b8942e;
+    --wine: #722f37;
+    --wine-dark: #4a1e24;
+    --black: #0a0a0a;
+    --cream: #f5f1e8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    background: rgba(10, 10, 10, 0.92) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 18px 0;
+  }
+  .navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: var(--gold) !important;
+  }
+  .navbar-brand span { color: var(--cream); }
+  .nav-link {
+    color: var(--cream) !important;
+    font-weight: 500;
+    margin: 0 8px;
+    transition: color 0.3s;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--gold) !important; }
+
+  /* PAGE HEADER */
+  .page-header {
+    position: relative;
+    overflow: hidden;
+    padding: 140px 20px 80px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  .page-header-bg {
+    position: absolute;
+    inset: -10%;
+    background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    animation: pagePanZoom 16s ease-in-out infinite alternate;
+    z-index: 0;
+    filter: brightness(0.4) contrast(1.1);
+  }
+
+  @keyframes pagePanZoom {
+    0% { transform: scale(1.05) translate(0, 0); }
+    100% { transform: scale(1.15) translate(-2%, -1%); }
+  }
+
+  .page-header-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(74,30,36,0.85) 100%);
+    z-index: 1;
+  }
+
+  .page-header-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: var(--cream);
+    margin-bottom: 18px;
+    line-height: 1.1;
+  }
+
+  .page-header h1 span { color: var(--gold); }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: rgba(245, 241, 232, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* SERVICES SECTION */
+  .services-full {
+    padding: 100px 0;
+  }
+
+  .service-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 100px;
+  }
+
+  .service-block.reverse {
+    direction: rtl;
+  }
+
+  .service-block.reverse > * {
+    direction: ltr;
+  }
+
+  .service-img-wrap {
+    position: relative;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 25px 60px rgba(114, 47, 55, 0.4);
+  }
+
+  .service-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: serviceImgPan 16s ease-in-out infinite alternate;
+  }
+
+  @keyframes serviceImgPan {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.12); }
+  }
+
+  .service-info .num {
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .service-info h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: var(--cream);
+    margin-bottom: 18px;
+  }
+
+  .service-info h2 span { color: var(--gold); }
+
+  .service-info p {
+    color: rgba(245, 241, 232, 0.75);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .service-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+  }
+
+  .service-features li {
+    color: rgba(245, 241, 232, 0.85);
+    padding: 8px 0;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .service-features li::before {
+    content: "✓";
+    color: var(--gold);
+    font-weight: 900;
+    font-size: 1.1rem;
+  }
+
+  .price-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(114,47,55,0.2));
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* CTA */
+  .cta-wrapper {
+    background: var(--black);
+    padding: 80px 20px;
+  }
+
+  .cta-section {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 2px solid var(--gold);
+    padding: 100px 40px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 30px 80px rgba(114, 47, 55, 0.5);
+  }
+
+  .cta-section h2 {
+    color: var(--cream);
+    font-weight: 800;
+    font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+    margin-bottom: 18px;
+  }
+
+  .cta-section h2 span { color: var(--gold); }
+
+  .cta-section p {
+    color: rgba(245, 241, 232, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s;
+  }
+
+  .btn-gold:hover {
+    background: var(--gold-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.35);
+    color: var(--black);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    padding: 50px 0 30px;
+    text-align: center;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  footer h5 {
+    color: var(--gold);
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  footer p {
+    color: rgba(245, 241, 232, 0.5);
+    font-size: 0.9rem;
+    margin: 4px 0;
+  }
+
+  @media (max-width: 768px) {
+    .service-block, .service-block.reverse {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      direction: ltr;
+      margin-bottom: 60px;
+    }
+    .service-img-wrap { height: 280px; }
+    .page-header { padding: 120px 20px 60px; }
+    .cta-wrapper { padding: 50px 15px; }
+    .cta-section { padding: 70px 25px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Metros <span>Dev</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="services.html">Services</a>
+        <a class="nav-link" href="work.html">Work</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <div class="eyebrow">My Services</div>
+    <h1>What I <span>Build For You</span></h1>
+    <p>Clean, professional websites designed to help small businesses grow online.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-full">
+  <div class="container">
+
+    <!-- SERVICE 1 -->
+    <div class="service-block">
+      <div class="service-img-wrap">
+        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80" alt="Web Development">
+      </div>
+      <div class="service-info">
+        <div class="num">01 SERVICE</div>
+        <h2>Web <span>Development</span></h2>
+        <p>Custom websites built from scratch with modern HTML, CSS, and JavaScript. Perfect for businesses that need a unique, professional online presence.</p>
+        <ul class="service-features">
+          <li>Custom-coded design (no templates)</li>
+          <li>Mobile-friendly and fast-loading</li>
+          <li>WhatsApp and contact form integration</li>
+          <li>Deployed live and free forever</li>
+        </ul>
+        <span class="price-tag">Starting from ₦50,000</span>
+      </div>
+    </div>
+
+    <!-- SERVICE 2 -->
+    <div class="service-block reverse">
+      <div class="service-img-wrap">
+        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" alt="Web Design">
+      </div>
+      <div class="service-info">
+        <div class="num">02 SERVICE</div>
+        <h2>Web <span>Design</span></h2>
+        <p>Modern, clean design that matches your brand and connects with your audience. Great for businesses that want to look premium.</p>
+        <ul class="service-features">
+          <li>Custom color palette and typography</li>
+          <li>Logo-friendly layout</li>
+          <li>Clean, minimal aesthetic</li>
+          <li>Optimized for conversions</li>
+        </ul>
+        <span class="price-tag">Starting from ₦40,000</span>
+      </div>
+    </div>
+
+    <!-- SERVICE 3 -->
+    <div class="service-block">
+      <div class="service-img-wrap">
+        <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800&q=80" alt="Bootstrap 5">
+      </div>
+      <div class="service-info">
+        <div class="num">03 SERVICE</div>
+        <h2>Bootstrap <span>5 Sites</span></h2>
+        <p>Fast, responsive websites built with Bootstrap 5. Perfect for businesses that need professional quality without long development times.</p>
+        <ul class="service-features">
+          <li>Quick 3–5 day delivery</li>
+          <li>Fully responsive on all devices</li>
+          <li>Modern components and animations</li>
+          <li>Clean, professional look</li>
+        </ul>
+        <span class="price-tag">Starting from ₦60,000</span>
+      </div>
+    </div>
+
+    <!-- SERVICE 4 -->
+    <div class="service-block reverse">
+      <div class="service-img-wrap">
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Responsive Design">
+      </div>
+      <div class="service-info">
+        <div class="num">04 SERVICE</div>
+        <h2>Responsive <span>Design</span></h2>
+        <p>Websites that work perfectly on every device phones, tablets, laptops, and desktops. Your customers can reach you anywhere.</p>
+        <ul class="service-features">
+          <li>Mobile-first development</li>
+          <li>Tested on all major devices</li>
+          <li>Fast loading on mobile data</li>
+          <li>Touch-friendly interface</li>
+        </ul>
+        <span class="price-tag">Included with every project</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrapper">
+  <section class="cta-section" style="background:linear-gradient(135deg, var(--wine-dark), var(--wine));">
+    <h2>Ready to <span>Start Your Project?</span></h2>
+    <p>Tell me about your business I'll recommend the best option for you.</p>
+    <a href="contact.html" class="btn btn-gold">Get a Free Quote →</a>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <h5>Metros Dev</h5>
+    <p>Building websites that work for you.</p>
+    <p class="mt-3">© 2026 Metros Dev. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
